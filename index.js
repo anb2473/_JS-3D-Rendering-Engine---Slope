@@ -52,8 +52,6 @@ function gameLoop(){
 
             resizeWindow();
 
-            draw3dCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
-
             drawUI();
 
             reduceVelocity();
@@ -122,6 +120,10 @@ function roundToTenth(num) {
 function drawBlocks(){
     let depth = 9;
     for (let block of blocks){
+        if (depth === 2){
+            draw3dCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
+        }
+
         if (block === -1){
             depth--;
             continue;
@@ -141,6 +143,10 @@ function drawBlocks(){
 function drawBlocksWithoutCheck(){
     let depth = 9;
     for (let block of blocks){
+        if (depth === 2){
+            draw3dExtrapolatedCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
+        }
+
         if (block === -1){
             depth--;
             continue;
@@ -667,8 +673,6 @@ function displayGameOver(){
     drawBlocksWithoutCheck();
 
     drawUI();
-
-    draw3dExtrapolatedCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
 
     if (timoutDelay <= 0){
         ctx.fillStyle = "rgba(0, 0, 0, " + (Math.max(Math.abs(timoutDelay / 100), 0)) + ")";
