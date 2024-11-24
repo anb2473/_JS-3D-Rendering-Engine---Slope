@@ -2,6 +2,7 @@ let gameWindow = document.getElementById("gameBoard");
 let soundBtn = document.getElementById("music-btn")
 let ctx = gameWindow.getContext('2d');
 let running = true;
+let intro = true;
 let fov = 500;
 let boardBackground = "black";
 let score = 0;
@@ -19,6 +20,12 @@ let expandRate = 0.05;
 let timoutDelay = 200;
 
 let difficult = 6;
+
+let introStage = 0;
+
+let introTimer = 50;
+
+let introAlpha = 255;
 
 gameWindow.width = window.innerWidth;
 gameWindow.height = window.innerHeight;
@@ -41,30 +48,110 @@ function gameLoop(){
         setTimeout(() => {
             clearBoard();
 
-            offsetX += xVelocity;
+            if (introStage === 0){
+                introTimer--;
+                if (introTimer <= 0){
+                    introStage++;
+                    introTimer = 50;
+                }
 
-            renderDropFloor();
-            renderDropLeftSide();
-            renderDropRightSide();
-            renderDropRoof();
+                ctx.font = "75px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText("SLOPE", 300, 300);
+            }
+            else if (introStage === 1){
+                introTimer--;
+                if (introTimer <= 0){
+                    introStage++;
+                    introTimer = 50;
+                }
 
-            drawBlocks();
+                ctx.font = "75px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText("SLOPE", 300, 300);
 
-            reduceVelocity();
+                ctx.fillText("BY", 575, 300);
+            }
+            else if (introStage === 2){
+                introTimer--;
+                if (introTimer <= 0){
+                    introStage++;
+                    introTimer = 50;
+                }
 
-            resizeWindow();
+                ctx.font = "75px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText("SLOPE", 300, 300);
 
-            drawUI();
+                ctx.fillText("BY", 575, 300);
 
-            reduceDropZ();
+                ctx.fillText("AUSTIN", 700, 300);
+            }
+            else if (introStage === 3){
+                introTimer--;
+                if (introTimer <= 0){
+                    introStage++;
+                    introTimer = 50;
+                }
 
-            checkWallCollision();
+                ctx.font = "75px Arial";
+                ctx.fillStyle = "white";
+                ctx.fillText("SLOPE", 300, 300);
+
+                ctx.fillText("BY", 575, 300);
+
+                ctx.fillText("AUSTIN", 700, 300);
+
+                ctx.fillText("BLASS", 1000, 300);
+            }
+            else if (introStage === 4){
+                introAlpha--;
+                if (introAlpha <= -25){
+                    introStage++;
+                }
+
+                ctx.font = "75px Arial";
+                if (introAlpha >= 0){
+                    ctx.fillStyle = "rgba(" + introAlpha + ", " + introAlpha + ", " + introAlpha + ")";
+                }
+                else{
+                    ctx.fillStyle = "rgba(0, 0, 0)";
+                }
+
+                ctx.fillText("SLOPE", 300, 300);
+
+                ctx.fillText("BY", 575, 300);
+
+                ctx.fillText("AUSTIN", 700, 300);
+
+                ctx.fillText("BLASS", 1000, 300);
+            }
+            else{
+                offsetX += xVelocity;
+
+                renderDropFloor();
+                renderDropLeftSide();
+                renderDropRightSide();
+                renderDropRoof();
+
+                drawBlocks();
+
+                reduceVelocity();
+
+                resizeWindow();
+
+                drawUI();
+
+                reduceDropZ();
+
+                checkWallCollision();
+
+                if (difficult > 1){
+                    difficult -= 0.0001;
+                }
+            }
 
             gameLoop();
-
-            if (difficult > 1){
-                difficult -= 0.0001;
-            }
         }, 10)
     }
     else{
