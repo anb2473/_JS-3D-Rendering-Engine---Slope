@@ -1,4 +1,5 @@
 let gameWindow = document.getElementById("gameBoard");
+let soundBtn = document.getElementById("music-btn")
 let ctx = gameWindow.getContext('2d');
 let running = true;
 let fov = 500;
@@ -25,7 +26,15 @@ gameWindow.height = window.innerHeight;
 window.addEventListener("keydown", checkKeys);
 window.addEventListener("keydown", checkRestart);
 
+soundBtn.addEventListener("click", startMusic);
+
 gameLoop();
+
+function startMusic(event){
+    const audio = new Audio('BackgroundAudio.mp3');
+    audio.play();
+    soundBtn.remove();
+}
 
 function gameLoop(){
     if (running){

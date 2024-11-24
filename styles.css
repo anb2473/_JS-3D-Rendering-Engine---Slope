@@ -2,13 +2,23 @@ body{
     background-color: rgb(20, 20, 20);
 }
 
-h1{
+#music-btn{
+    border: none;
+    border-radius: 5px;
+
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    padding: 5px 10px;
+
     color: white;
-    text-align: center;
+    background-color: rgba(100, 255, 100);
+    transition: background-color 0.3s ease-in-out;
 }
 
-#gameBoard{
-
+#music-btn:hover{
+    background-color: rgba(150, 255, 150);
 }
 
 #gameContainer{
