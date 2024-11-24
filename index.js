@@ -46,6 +46,8 @@ function startMusic(event){
 function gameLoop(){
     if (running){
         setTimeout(() => {
+            resizeWindow();
+
             clearBoard();
 
             if (introStage === 0){
@@ -57,7 +59,7 @@ function gameLoop(){
 
                 ctx.font = "75px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText("SLOPE", 300, 300);
+                ctx.fillText("SLOPE", window.innerWidth / 2 - 500, window.innerHeight / 2);
             }
             else if (introStage === 1){
                 introTimer--;
@@ -68,9 +70,9 @@ function gameLoop(){
 
                 ctx.font = "75px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText("SLOPE", 300, 300);
+                ctx.fillText("SLOPE", window.innerWidth / 2 - 500, window.innerHeight / 2);
 
-                ctx.fillText("BY", 575, 300);
+                ctx.fillText("BY", window.innerWidth / 2 - 200, window.innerHeight / 2);
             }
             else if (introStage === 2){
                 introTimer--;
@@ -81,11 +83,11 @@ function gameLoop(){
 
                 ctx.font = "75px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText("SLOPE", 300, 300);
+                ctx.fillText("SLOPE", window.innerWidth / 2 - 500, window.innerHeight / 2);
 
-                ctx.fillText("BY", 575, 300);
+                ctx.fillText("BY", window.innerWidth / 2 - 200, window.innerHeight / 2);
 
-                ctx.fillText("AUSTIN", 700, 300);
+                ctx.fillText("AUSTIN", window.innerWidth / 2 - 60, window.innerHeight / 2);
             }
             else if (introStage === 3){
                 introTimer--;
@@ -96,13 +98,13 @@ function gameLoop(){
 
                 ctx.font = "75px Arial";
                 ctx.fillStyle = "white";
-                ctx.fillText("SLOPE", 300, 300);
+                ctx.fillText("SLOPE", window.innerWidth / 2 - 500, window.innerHeight / 2);
 
-                ctx.fillText("BY", 575, 300);
+                ctx.fillText("BY", window.innerWidth / 2 - 200, window.innerHeight / 2);
 
-                ctx.fillText("AUSTIN", 700, 300);
+                ctx.fillText("AUSTIN", window.innerWidth / 2 - 60, window.innerHeight / 2);
 
-                ctx.fillText("BLASS", 1000, 300);
+                ctx.fillText("BLASS", window.innerWidth / 2 + 260, window.innerHeight / 2);
             }
             else if (introStage === 4){
                 introAlpha--;
@@ -118,27 +120,25 @@ function gameLoop(){
                     ctx.fillStyle = "rgba(0, 0, 0)";
                 }
 
-                ctx.fillText("SLOPE", 300, 300);
+                ctx.fillText("SLOPE", window.innerWidth / 2 - 500, window.innerHeight / 2);
 
-                ctx.fillText("BY", 575, 300);
+                ctx.fillText("BY", window.innerWidth / 2 - 200, window.innerHeight / 2);
 
-                ctx.fillText("AUSTIN", 700, 300);
+                ctx.fillText("AUSTIN", window.innerWidth / 2 - 60, window.innerHeight / 2);
 
-                ctx.fillText("BLASS", 1000, 300);
+                ctx.fillText("BLASS", window.innerWidth / 2 + 260, window.innerHeight / 2);
             }
             else{
                 offsetX += xVelocity;
 
-                renderDropFloor();
                 renderDropLeftSide();
                 renderDropRightSide();
+                renderDropFloor();
                 renderDropRoof();
 
                 drawBlocks();
 
                 reduceVelocity();
-
-                resizeWindow();
 
                 drawUI();
 
@@ -156,6 +156,8 @@ function gameLoop(){
     }
     else{
         setTimeout(() => {
+            resizeWindow();
+
             displayGameOver();
             gameLoop();
         });
