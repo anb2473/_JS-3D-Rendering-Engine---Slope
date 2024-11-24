@@ -120,7 +120,7 @@ function roundToTenth(num) {
 function drawBlocks(){
     let depth = 9;
     for (let block of blocks){
-        if (depth === 2){
+        if (depth === 2 && dropZ >= 250){
             draw3dCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
         }
 
@@ -138,13 +138,20 @@ function drawBlocks(){
 
         depth--;
     }
+
+    if (dropZ < 250){
+        draw3dCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
+    }
 }
 
 function drawBlocksWithoutCheck(){
     let depth = 9;
     for (let block of blocks){
-        if (depth === 2){
+        if (depth === 2 && dropZ >= 250){
             draw3dExtrapolatedCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
+        }
+        else if (depth === 2){
+
         }
 
         if (block === -1){
@@ -155,6 +162,10 @@ function drawBlocksWithoutCheck(){
         draw3dCube(-600 + (block * 200), 100, (depth * 500) - dropZ, 200, 200, 500, 0, 0, 0, "rgba(255, 50, 50)");
 
         depth--;
+    }
+
+    if (dropZ < 250){
+        draw3dExtrapolatedCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
     }
 }
 
