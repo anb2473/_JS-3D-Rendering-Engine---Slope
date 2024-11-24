@@ -23,6 +23,7 @@ gameWindow.width = window.innerWidth;
 gameWindow.height = window.innerHeight;
 
 window.addEventListener("keydown", checkKeys);
+window.addEventListener("keydown", checkRestart);
 
 gameLoop();
 
@@ -663,8 +664,6 @@ function displayGameOver(){
         ctx.font = "15px Arial";
         ctx.fillText("Created by Austin Blass", window.innerWidth / 2 - 100, window.innerHeight / 2 + 300);
     }
-
-    window.addEventListener("keydown", checkRestart);
 
     expandRate++;
 }
