@@ -8,7 +8,7 @@ let highscore = 0;
 let dropZ = 0;
 let offsetX = 0;
 let xVelocity = 0;
-let blocks = [3, -1, -1, -1, -1, -1, -1, -1];
+let blocks = [-1, -1, -1, -1, -1, -1, -1, -1];
 
 let xOffsets = [];
 let yOffsets = [];
