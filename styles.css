@@ -16,11 +16,12 @@ body{
 
     color: white;
     background-color: rgba(100, 255, 100);
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 #music-btn:hover{
     background-color: rgba(150, 255, 150);
+    transform: scale(1.1, 1.1);
 }
 
 #gameContainer{

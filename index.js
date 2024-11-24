@@ -50,11 +50,11 @@ function gameLoop(){
 
             drawBlocks();
 
+            reduceVelocity();
+
             resizeWindow();
 
             drawUI();
-
-            reduceVelocity();
 
             reduceDropZ();
 
@@ -111,10 +111,6 @@ function checkWallCollision(){
         setDiffFigures();
         running = false;
     }
-}
-
-function roundToTenth(num) {
-    return Math.round(num * 10);
 }
 
 function drawBlocks(){
