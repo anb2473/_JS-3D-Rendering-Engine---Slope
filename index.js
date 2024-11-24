@@ -116,7 +116,7 @@ function drawBlocks(){
             continue;
         }
 
-        if (check3dCollision(-offsetX, 200, 1000, 75, 75, 75, -600 + (block * 200), 100, (depth * 500) - dropZ, 200, 200, 500)){
+        if (check3dCollision(-offsetX - 18.75, 200 - 18.75, 1000 - 18.75, 75, 75, 75, -600 + (block * 200) - 50, 50, (depth * 500) - dropZ - 125, 200, 200, 500)){
             setDiffFigures();
             running = false;
         }

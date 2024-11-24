@@ -1,10 +1,12 @@
 body{
-    background-color: rgb(20, 20, 20);
+    background-color: black;
 }
 
 #music-btn{
     border: none;
     border-radius: 5px;
+
+    font: 20px Arial;
 
     position: fixed;
     top: 20px;
