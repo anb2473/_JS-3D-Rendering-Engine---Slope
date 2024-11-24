@@ -610,9 +610,16 @@ function draw3dCube(x, y, z, width, height, depth, xRot, yRot, zRot, color){
 
     drawBottom(x, y, z, width, height, depth, xRad, yRad, zRad, color);
 
-    drawLeft(x, y, z, width, height, depth, xRad, yRad, zRad, color);
+    if (x > -offsetX){
+        drawRight(x, y, z, width, height, depth, xRad, yRad, zRad, color);
 
-    drawRight(x, y, z, width, height, depth, xRad, yRad, zRad, color);
+        drawLeft(x, y, z, width, height, depth, xRad, yRad, zRad, color);
+    }
+    else{
+        drawLeft(x, y, z, width, height, depth, xRad, yRad, zRad, color);
+
+        drawRight(x, y, z, width, height, depth, xRad, yRad, zRad, color);
+    }
 
     drawTop(x, y, z, width, height, depth, xRad, yRad, zRad, color);
 
