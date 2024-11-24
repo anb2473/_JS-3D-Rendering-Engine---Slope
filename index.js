@@ -50,6 +50,8 @@ function gameLoop(){
 
             drawBlocks();
 
+            resizeWindow();
+
             draw3dCube(-offsetX, 200, 1000, 125, 125, 125, 0, -xVelocity / 2, 0, "rgba(100, 255, 100)");
 
             drawUI();
@@ -72,6 +74,15 @@ function gameLoop(){
             displayGameOver();
             gameLoop();
         });
+    }
+}
+
+function resizeWindow(){
+    if (gameWindow.width !== window.innerWidth){
+        gameWindow.width = window.innerWidth;
+    }
+    if (gameWindow.height !== window.innerHeight){
+        gameWindow.height = window.innerHeight;
     }
 }
 
@@ -645,6 +656,8 @@ function displayGameOver(){
     timoutDelay--;
 
     clearBoard();
+
+    resizeWindow();
 
     renderDropFloor();
     renderDropLeftSide();
