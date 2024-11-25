@@ -196,7 +196,7 @@ function setDiffFigures(){
 }
 
 function checkWallCollision(){
-    if (-offsetX < -425 || -offsetX > 425){
+    if (-offsetX < -450 || -offsetX > 450){
         setDiffFigures();
         running = false;
     }
