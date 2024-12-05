@@ -30,8 +30,17 @@ let introAlpha = 255;
 gameWindow.width = window.innerWidth;
 gameWindow.height = window.innerHeight;
 
-window.addEventListener("keydown", checkKeys);
-window.addEventListener("keydown", checkRestart);
+let keysPressed = {};
+
+// window.addEventListener("keydown", checkKeys);
+// window.addEventListener("keydown", checkRestart);
+window.addEventListener('keydown', (event) => {
+    keysPressed[event.key] = true;
+});
+
+window.addEventListener('keyup', (event) => {
+    delete keysPressed[event.key];
+});
 
 soundBtn.addEventListener("click", startMusic);
 
@@ -46,6 +55,9 @@ function startMusic(event){
 function gameLoop(){
     if (running){
         setTimeout(() => {
+            checkReset();
+            checkMoveKeys();
+
             resizeWindow();
 
             clearBoard();
@@ -156,6 +168,8 @@ function gameLoop(){
     }
     else{
         setTimeout(() => {
+            checkReset();
+
             resizeWindow();
 
             displayGameOver();
@@ -295,27 +309,6 @@ function reduceVelocity(){
     }
     else if (xVelocity <= -0.25){
         xVelocity += 0.25;
-    }
-}
-
-function checkKeys(event){
-    const keyPressed = event.keyCode;
-    const left = 65;
-    const right = 68;
-
-    if (keyPressed === left){
-        xVelocity += 1.5;
-    }
-    else if (keyPressed === right){
-        xVelocity -= 1.5;
-    }
-
-    if (xVelocity > 10){
-        xVelocity = 10;
-    }
-
-    if (xVelocity < -10){
-        xVelocity = -10;
     }
 }
 
@@ -761,6 +754,34 @@ function drawRect(x1, y1, x2, y2, x3, y3, x4, y4, color){
     ctx.stroke(path);
 }
 
+function checkMoveKeys(){
+    if (keysPressed["a"] === true){
+        xVelocity += 0.5;
+    }
+    else if (keysPressed["d"] === true){
+        xVelocity -= 0.5;
+    }
+
+    if (xVelocity > 10){
+        xVelocity = 10;
+    }
+
+    if (xVelocity < -10){
+        xVelocity = -10;
+    }
+}
+
+function checkReset(){
+    if (keysPressed["r"] === true){
+        offsetX = 0;
+        xVelocity = 0;
+        blocks = [3, -1, -1, -1, -1, -1, -1, -1];
+        dropZ = 0;
+        running = true;
+        score = 0;
+    }
+}
+
 function displayGameOver(){
     timoutDelay--;
 
@@ -815,18 +836,4 @@ function draw3dExtrapolatedCube(x, y, z, width, height, depth, xRot, yRot, zRot,
     drawTop(x - xOffsets[4] * expandRate, y - yOffsets[4] * expandRate, z - zOffsets[4] * expandRate, width + xOffsets[4] * expandRate, height + yOffsets[4] * expandRate, depth + zOffsets[4] * expandRate, xRad, yRad, zRad, color);
 
     drawFront(x - xOffsets[5] * expandRate, y - yOffsets[5] * expandRate, z - zOffsets[5] * expandRate, width + xOffsets[5] * expandRate, height + yOffsets[5] * expandRate, depth + zOffsets[5] * expandRate, xRad, yRad, zRad, color);
-}
-
-function checkRestart(event){
-    const keyPressed = event.keyCode;
-    const r = 82;
-
-    if (keyPressed === r){
-        offsetX = 0;
-        xVelocity = 0;
-        blocks = [3, -1, -1, -1, -1, -1, -1, -1];
-        dropZ = 0;
-        running = true;
-        score = 0;
-    }
 }
